@@ -1,23 +1,14 @@
 <script setup>
-import { storeToRefs } from 'pinia';
-import NavBar from './components/NavBar.vue';
-import { userSessionStore } from './stores/UserSessionStore';
+import ComponentCard from './components/ComponentCard.vue';
 
-const userStore=userSessionStore()
-userStore.fill()
 
-const {userInfoSession}=storeToRefs(userSessionStore())
 </script>
 
 <template>
  
- <NavBar/>
+<p>Hola</p>
 
-<div v-for="user in userInfoSession">
-
-  <p>{{ user.name }}</p>
-
-</div>
+<ComponentCard />
 </template>
 
 <style >
