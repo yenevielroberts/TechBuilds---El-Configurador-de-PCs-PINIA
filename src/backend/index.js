@@ -13,6 +13,9 @@ db.run(`CREATE TABLE IF NOT EXISTS users(
         email VARCHAR(100)
 )`);
 
+db.run(`INSERT INTO users (name,email) VALUES('Yeneviel','yeneviel@gmail.com') `)
+
+db.close()
 //RUTA GET
 
 app.get('/usuarios',(req,res)=>{
@@ -32,7 +35,7 @@ app.post('/news/usuarios', (req, res) => {
   const { nombre, email } = req.body;
   //run() no devuelve filas. ? placeholders, evitar sql Injection. [] parametros, el primer ? se reemplaza por nombre
   db.run(
-    'INSERT INTO users (nombre, email) VALUES (?, ?)',
+    'INSERT INTO users (name, email) VALUES (?, ?)',
     [nombre, email],
     function (err) {
       if (err) {

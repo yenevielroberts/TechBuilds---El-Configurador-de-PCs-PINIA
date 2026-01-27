@@ -1,30 +1,34 @@
 <script setup>
-import { ref} from 'vue';
-import { useFetch } from '../composables/useFetch';
 
+const props = defineProps({
+  product: Object,
+});
 
+// emits
+defineEmits(["addToCart"])
 
-const url= ref(`http://localhost:3000/usuarios`)
-const {data, error,loading, fetchData}=useFetch(url);
 
 </script>
-
 <template>
-  <div v-if="loading">
-      <p>loading</p>
-  </div>
 
-  <div v-else-if="error">
-    <p>Error: {{ error }}</p>
+  <div class="card">
+     <p><strong>{{ product.name }}</strong></p> 
+     <p>{{ product.type }}</p>
+     <p>${{ product.price }}</p>
+     <button>Añadir al carrito</button>
+        
+ 
   </div>
-
-  <div v-else>
-      <!--Aquí ya se cargó los datos de la api-->
-        <div  v-if="data">
-            <p><strong>Titulo: </strong>{{ data.name}}</p>
-        </div>
-    </div>
+ 
 </template>
+<style scoped>
 
-<style  scoped>
+.card{
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin: 10px;
+  border: black solid 1px;
+  padding: 5px;
+}
 </style>

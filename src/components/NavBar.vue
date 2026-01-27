@@ -6,9 +6,9 @@
 
 <header>
     <div id="header-content">
-        <di>
+        <div>
             <h1>TechBuilds</h1>
-        </di>
+        </div>
         <div id="div-user-info">
             <p>USerName</p>
             <button>cart</button>

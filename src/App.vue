@@ -1,14 +1,24 @@
 <script setup>
+import {useProductStore} from '@/stores/HardwareStore'
+import { storeToRefs } from 'pinia';
 import ComponentCard from './components/ComponentCard.vue';
+import NavBar from './components/NavBar.vue';
 
-
+const products=useProductStore()
+products.loadHardware()
+const {productsRef}=storeToRefs(useProductStore())
 </script>
 
 <template>
- 
-<p>Hola</p>
+ <NavBar />
+<h1>Hardware Components</h1>
 
-<ComponentCard />
+<ComponentCard 
+v-for=" hardware in productsRef"
+:key="hardware.name"
+:product="hardware"
+
+/>
 </template>
 
 <style >
