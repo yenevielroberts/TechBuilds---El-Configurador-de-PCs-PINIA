@@ -21,7 +21,6 @@ export const userSessionStore = defineStore('userInfo', () => {
         const userObject={
             "name":name,
             "gitHub":"",
-            "carrito":[]
         }
 
         if(name !=null){
@@ -34,16 +33,7 @@ export const userSessionStore = defineStore('userInfo', () => {
         return false
     }
 
-    function buscarUsuario(name){
 
-        const userFound=userInfoSession.value.find(name)
-
-        if(userFound !=null){
-          return userFound
-        }else{
-          return false
-        }
-    }
     
 
   return {userInfoSession, fill, newUser,buscarUsuario  }

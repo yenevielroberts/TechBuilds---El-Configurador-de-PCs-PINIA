@@ -17,14 +17,22 @@ export const buildStore=defineStore('carrito',()=>{
     }
     //ACTION
 
+    /**Función para añadir un producto el en carrito  */
     function addCarrito(producto){
 
         arrayCarrrito.value.push(producto)
-        localStorage.setItem(
+      
+    }
+
+    function guardarCarrito(){
+
+          /*localStorage.setItem(
             'carrito',
             JSON.stringify(arrayCarrrito.value)
-        )
+        )*/
     }
+
+    
 
     return {arrayCarrrito, totalPrice,addCarrito,obtenerCarrito}
 })
