@@ -9,7 +9,8 @@ export const buildStore=defineStore('carrito',()=>{
 
     //GETTERS
     function obtenerCarrito(){
-        arrayCarrrito.value=carritoDatos
+        const saved=localStorage.getItem('carrito')
+        arrayCarrrito.value=saved ? JSON.parse(saved): null
     }
     function totalPrice(){
 
@@ -19,7 +20,10 @@ export const buildStore=defineStore('carrito',()=>{
     function addCarrito(producto){
 
         arrayCarrrito.value.push(producto)
-        console.log(producto)
+        localStorage.setItem(
+            'carrito',
+            JSON.stringify(arrayCarrrito.value)
+        )
     }
 
     return {arrayCarrrito, totalPrice,addCarrito,obtenerCarrito}
