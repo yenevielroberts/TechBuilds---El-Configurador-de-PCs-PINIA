@@ -14,6 +14,8 @@ const carrito=buildStore()
 //const userName=prompt("escribe tu nombre")
 
 //userInfo.newUser(userName)
+
+
 </script>
 
 <template>
@@ -24,7 +26,7 @@ const carrito=buildStore()
 v-for=" hardware in products.productsRef"
 :key="hardware.name"
 :product="hardware"
-@addToCart="carrito.addCarrito()"
+@addToCart="carrito.addCarrito"
 
 />
 </template>
