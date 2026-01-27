@@ -7,6 +7,10 @@ const props = defineProps({
 // emits
 defineEmits(["addToCart"])
 
+const addToCart=()=>{
+  emit('addToCart', props.product)
+}
+
 
 </script>
 <template>
@@ -15,7 +19,7 @@ defineEmits(["addToCart"])
      <p><strong>{{ product.name }}</strong></p> 
      <p>{{ product.type }}</p>
      <p>${{ product.price }}</p>
-     <button>Añadir al carrito</button>
+     <button @clik="addToCart">Añadir al carrito</button>
         
  
   </div>

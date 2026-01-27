@@ -14,25 +14,37 @@ export const userSessionStore = defineStore('userInfo', () => {
         userInfoSession.value=user
     }
 
-    function newUser(name){
+    //ACTION
+
+      function newUser(name){
 
         const userObject={
             "name":name,
+            "gitHub":"",
             "carrito":[]
         }
 
         if(name !=null){
 
-          user.push(userObject) 
+          userInfoSession.value.push(userObject) 
+          user=userInfoSession
           return true
 
         }
-
         return false
     }
 
-    //ACTION
+    function buscarUsuario(name){
+
+        const userFound=userInfoSession.value.find(name)
+
+        if(userFound !=null){
+          return userFound
+        }else{
+          return false
+        }
+    }
     
 
-  return {userInfoSession, fill, newUser  }
+  return {userInfoSession, fill, newUser,buscarUsuario  }
 })

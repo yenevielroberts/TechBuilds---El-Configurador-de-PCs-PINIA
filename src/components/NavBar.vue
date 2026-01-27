@@ -1,5 +1,8 @@
 <script setup>
 
+/*const props=defineProps({
+    user: String,
+})*/
 </script>
 
 <template>
@@ -10,7 +13,7 @@
             <h1>TechBuilds</h1>
         </div>
         <div id="div-user-info">
-            <p>USerName</p>
+            <p>Guestbuilder</p>
             <button>cart</button>
         </div>
     </div>
