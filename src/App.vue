@@ -6,10 +6,12 @@ import { userSessionStore } from '@/stores/UserSessionStore';
 
 const user=userSessionStore()
 user.fill()
+
+console.log(user.userInfoSession.name)
 </script>
 
 <template>
- <NavBar />
+ <NavBar :user="user.userInfoSession"/>
 
 <Login v-if="!user.userInfoSession"/>
 <Home v-else/>

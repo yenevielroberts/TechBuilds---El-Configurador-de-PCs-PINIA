@@ -1,8 +1,9 @@
 <script setup>
 
 const props=defineProps({
-    user: Object,
+    user: Object
 })
+
 </script>
 
 <template>
@@ -13,7 +14,7 @@ const props=defineProps({
             <h1>TechBuilds</h1>
         </div>
         <div id="div-user-info">
-            <p>Guestbuilder</p>
+            <p>{{user.name}}</p>
             <button>cart</button>
         </div>
     </div>

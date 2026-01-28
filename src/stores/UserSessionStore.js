@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 import { defineStore } from 'pinia'
 import user from '@/data/userData.json'
 
@@ -6,12 +6,15 @@ export const userSessionStore = defineStore('userInfo', () => {
  
     //STATE
 
-    const userInfoSession=ref([])
+    const userInfoSession=reactive({
+      "name":null,
+      "github":null
+    })
     //GETTERS
 
     //Función para obtener los datos del localStorage
     function fill(){
-        userInfoSession.value=localStorage.getItem("user") || null
+        userInfoSession.name=localStorage.getItem("user") || null
     }
 
     //ACTION
@@ -24,11 +27,7 @@ export const userSessionStore = defineStore('userInfo', () => {
         }
 
         localStorage.setItem("user",name)
-        userInfoSession.value.push(userObject) 
+        userInfoSession.value=userObject
     }
-
-
-    
-
   return {userInfoSession, fill, newUser }
 })
