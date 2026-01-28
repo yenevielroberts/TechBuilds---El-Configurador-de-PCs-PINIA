@@ -1,26 +1,31 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import carritoDatos from '@/data/carrito.json'
 
-export const buildStore=defineStore('carrito',()=>{
+export const buildStore=defineStore('buildStore',()=>{
 
     //STATS
-    const arrayCarrrito=ref([])
+    //Inicialiazo el carrito con localStorage o vacio
+    const arrayCarrito=ref(JSON.parse(localStorage.getItem('carrito')) || [])
 
     //GETTERS
+    //Obtengo el carrito desde el localStorage
     function obtenerCarrito(){
         const saved=localStorage.getItem('carrito')
-        arrayCarrrito.value=saved ? JSON.parse(saved): null
+        //Si ell carrito se guardo en el localStorage se pondra en el array sino sera un array vacio
+        arrayCarrito.value=saved ? JSON.parse(saved): [];
     }
     function totalPrice(){
 
     }
     //ACTION
 
-    /**Función para añadir un producto el en carrito  */
+    /**Función para añadir un producto el en carrito y guardarlo en el local storage  */
     function addCarrito(producto){
-
-        arrayCarrrito.value.push(producto)
+        arrayCarrito.value.push(producto)
+        localStorage.setItem(
+            'carrito',
+            JSON.stringify(arrayCarrito.value)
+        )
       
     }
 
@@ -34,5 +39,5 @@ export const buildStore=defineStore('carrito',()=>{
 
     
 
-    return {arrayCarrrito, totalPrice,addCarrito,obtenerCarrito}
+    return {arrayCarrito, totalPrice,addCarrito,obtenerCarrito}
 })

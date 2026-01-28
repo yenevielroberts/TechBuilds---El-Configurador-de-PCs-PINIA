@@ -1,9 +1,12 @@
 <script setup>
+import CurrentBuildWidget from './CurrentBuildWidget.vue';
+
 
 const props=defineProps({
     user: Object
 })
 
+let mostrarCarrito=false;
 </script>
 
 <template>
@@ -15,7 +18,7 @@ const props=defineProps({
         </div>
         <div id="div-user-info">
             <p>{{user.name}}</p>
-            <button>cart</button>
+            <button @click="mostrarCarrito=true">cart</button>
         </div>
     </div>
 </header>

@@ -13,13 +13,13 @@ export const userSessionStore = defineStore('userInfo', () => {
     //GETTERS
 
     //Función para obtener los datos del localStorage
-    function fill(){
+    function getUserName(){
         userInfoSession.name=localStorage.getItem("user") || null
     }
 
     //ACTION
 
-      function newUser(name){
+      function newUser(name="GuestBuilder"){
 
         const userObject={
             "name":name,
@@ -30,10 +30,15 @@ export const userSessionStore = defineStore('userInfo', () => {
         userInfoSession.value=userObject
     }
 
-    function logout(){
+    function changeUserName(newName){
+        userInfoSession.name=newName
+        localStorage.setItem("user",newName)
+    }
+
+    function checkOut(){
       userInfoSession.name= "GuestBuilder"
       localStorage.removeItem("usuario")
       console.log("logout")
     }
-  return {userInfoSession, fill, newUser,logout }
+  return {userInfoSession, getUserName, newUser,checkOut, changeUserName }
 })
