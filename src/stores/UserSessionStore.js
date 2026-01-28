@@ -29,5 +29,11 @@ export const userSessionStore = defineStore('userInfo', () => {
         localStorage.setItem("user",name)
         userInfoSession.value=userObject
     }
-  return {userInfoSession, fill, newUser }
+
+    function logout(){
+      userInfoSession.name= "GuestBuilder"
+      localStorage.removeItem("usuario")
+      console.log("logout")
+    }
+  return {userInfoSession, fill, newUser,logout }
 })

@@ -7,7 +7,6 @@ import { userSessionStore } from '@/stores/UserSessionStore';
 const user=userSessionStore()
 user.fill()
 
-console.log(user.userInfoSession.name)
 </script>
 
 <template>
@@ -16,7 +15,7 @@ console.log(user.userInfoSession.name)
 <Login v-if="!user.userInfoSession"/>
 <Home v-else/>
 
-
+<button @click="user.logout">Logout</button>
 </template>
 
 <style >
