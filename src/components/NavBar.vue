@@ -1,8 +1,8 @@
 <script setup>
 
-/*const props=defineProps({
-    user: String,
-})*/
+const props=defineProps({
+    user: Object,
+})
 </script>
 
 <template>

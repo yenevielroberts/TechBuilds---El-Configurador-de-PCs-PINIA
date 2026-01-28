@@ -9,9 +9,9 @@ export const userSessionStore = defineStore('userInfo', () => {
     const userInfoSession=ref([])
     //GETTERS
 
-    //Función para obtener los datos de json 
+    //Función para obtener los datos del localStorage
     function fill(){
-        userInfoSession.value=user
+        userInfoSession.value=localStorage.getItem("user") || null
     }
 
     //ACTION
@@ -23,18 +23,12 @@ export const userSessionStore = defineStore('userInfo', () => {
             "gitHub":"",
         }
 
-        if(name !=null){
-
-          userInfoSession.value.push(userObject) 
-          user=userInfoSession
-          return true
-
-        }
-        return false
+        localStorage.setItem("user",name)
+        userInfoSession.value.push(userObject) 
     }
 
 
     
 
-  return {userInfoSession, fill, newUser,buscarUsuario  }
+  return {userInfoSession, fill, newUser }
 })
