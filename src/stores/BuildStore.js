@@ -1,43 +1,66 @@
+import { groupBy } from "lodash";
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
-export const buildStore=defineStore('buildStore',()=>{
+export const buildStore = defineStore('buildStore', () => {
 
     //STATS
     //Inicialiazo el carrito con localStorage o vacio
-    const arrayCarrito=ref(JSON.parse(localStorage.getItem('carrito')) || [])
+    let arrayCarrito = ref([])
 
     //GETTERS
     //Obtengo el carrito desde el localStorage
-    function obtenerCarrito(){
-        const saved=localStorage.getItem('carrito')
+    function obtenerCarrito() {
+        const saved = localStorage.getItem('carrito')
         //Si ell carrito se guardo en el localStorage se pondra en el array sino sera un array vacio
-        arrayCarrito.value=saved ? JSON.parse(saved): [];
+        arrayCarrito.value = saved ? JSON.parse(saved) : [];
     }
-    function totalPrice(){
-
-    }
+ 
+    const totalPrice=computed(()=> arrayCarrito.value.reduce((acumulador, elemento)=>acumulador+elemento.price,0))
+   
+    const grouped=computed(()=>{
+        const grouped=groupBy(arrayCarrito.value, (product)=>product.type)
+        const sorted=Object.keys(grouped).sort()
+        let inOrder={}
+        sorted.forEach((key)=>(inOrder[key]=grouped[key]))
+        return inOrder
+    })
     //ACTION
 
     /**Función para añadir un producto el en carrito y guardarlo en el local storage  */
-    function addCarrito(producto){
+    function addComponent(producto) {
+        
         arrayCarrito.value.push(producto)
         localStorage.setItem(
             'carrito',
             JSON.stringify(arrayCarrito.value)
         )
-      
+
     }
 
-    function guardarCarrito(){
+    function checkOut() {
 
-          /*localStorage.setItem(
-            'carrito',
-            JSON.stringify(arrayCarrrito.value)
-        )*/
+        arrayCarrito.value=[]
+        localStorage.removeItem(
+          'carrito')
     }
 
-    
+    function removeComponent(prod){
+        const prodName=prod.name
+       const index=arrayCarrito.value.findIndex(prod => prod.name === prodName);//busco el producto que coincida con el id
+        if(index !== -1){
+            arrayCarrito.value.splice(index, 1);
 
-    return {arrayCarrito, totalPrice,addCarrito,obtenerCarrito}
+            localStorage.setItem(
+                'carrito',
+                JSON.stringify(arrayCarrito.value)
+            )
+        }
+    }
+
+
+
+
+
+    return { arrayCarrito,grouped, totalPrice, addComponent, obtenerCarrito,checkOut, removeComponent }
 })

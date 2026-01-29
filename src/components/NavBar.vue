@@ -1,12 +1,15 @@
 <script setup>
-import CurrentBuildWidget from './CurrentBuildWidget.vue';
-
 
 const props=defineProps({
     user: Object
 })
 
-let mostrarCarrito=false;
+
+const emit=defineEmits(["mostrarCarrito"])
+const mostrarCarrito=()=>{
+  
+    emit("mostrarCarrito", true)
+}
 </script>
 
 <template>
@@ -18,7 +21,7 @@ let mostrarCarrito=false;
         </div>
         <div id="div-user-info">
             <p>{{user.name}}</p>
-            <button @click="mostrarCarrito=true">cart</button>
+            <button @click="mostrarCarrito">cart</button>
         </div>
     </div>
 </header>

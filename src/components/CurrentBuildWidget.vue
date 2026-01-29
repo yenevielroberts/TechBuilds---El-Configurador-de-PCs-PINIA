@@ -1,24 +1,27 @@
 <script setup>
+import BuildWidgetItem from './buildWidgetItem.vue';
+import { buildStore } from '@/stores/BuildStore';
 
-const props = defineProps({
-  productCarrito: Object,
-});
 
-// emits
-const emit =defineEmits(["deleteProduct"])
+let carrito=buildStore()
+carrito.obtenerCarrito()
 
-const deleteProd=()=>{
-    emit('deleteProduct',props.productCarrito)
-}
 
 </script>
 <template>
-<h3>Carrito</h3>
-  <div class="card">
-     <p><strong>{{ productCarrito.name }}</strong></p> 
-     <p>${{ productCarrito.price }}</p>
-     <button @click="deleteProd">Eliminar</button>
-  </div>
+  <section id="section-carrito">
+    <h3>Carrito</h3>
+    <section id="carrito">
+        <BuildWidgetItem v-for="(product, name) in carrito.grouped"
+:key="name"
+:productCarrito="product[0]" 
+:cantidad="product.length"
+@delete-product="carrito.removeComponent"/>
+  <p><strong>Total: </strong>{{ carrito.totalPrice }}</p>
+    <button @click="carrito.checkOut">Checkout</button>
+    </section>
+  </section>
+
  
 </template>
 <style scoped>
@@ -31,4 +34,8 @@ const deleteProd=()=>{
   border: black solid 1px;
   padding: 5px;
 }
+
+
+
+
 </style>
