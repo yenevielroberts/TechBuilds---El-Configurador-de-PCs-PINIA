@@ -4,7 +4,6 @@ const props=defineProps({
     user: Object
 })
 
-
 const emit=defineEmits(["mostrarCarrito","changeUSerName"])
 
 const carritoVisible=ref(false);
@@ -14,13 +13,14 @@ const toggleCarrito=()=>{
     emit("mostrarCarrito", carritoVisible.value)
 }
 
+//función que redirije a al perfil de github
 function verGithub(){
     console.log(props.user.github)
     window.open(props.user.github,"_blank")
 }
 
-function changeUSerName(){
 
+function changeUSerName(){
     const cambiarNombre=confirm("¿Quieres cambiar el nombre de usuario?");
     emit("changeUserName",cambiarNombre)
 
@@ -35,7 +35,7 @@ function changeUSerName(){
             <h2>TechBuilds</h2>
         </div>
         <div id="div-user-info">
-            <button class="userName"@click="changeUSerName" id="AbrirModal">Hello, {{user.name}}</button>
+            <button class="userName"@click="changeUSerName">Hello, {{user.name}}</button>
             <button @click="verGithub" class="enlaceGit">Github</button>
             <button @click="toggleCarrito" class="btn-carrito">
                 {{ carritoVisible ? 'Close Cart' : 'Cart' }}

@@ -14,7 +14,7 @@ export const userSessionStore = defineStore('userInfo', () => {
 
   function newUser(name = "GuestBuilder",link="https://github.com") {
 
-    //Actualizo el objeto
+    //Actualizo el objeto y se rendeiza la página
     userInfoSession.value = {
       "name": name,
       "github": link,
