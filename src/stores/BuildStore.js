@@ -5,14 +5,14 @@ import { computed, ref } from "vue";
 export const buildStore = defineStore('buildStore', () => {
 
     //STATS
-    //Inicialiazo el carrito con localStorage o vacio
+    //Inicialiazo el carrito vacio
     let arrayCarrito = ref([])
 
     //GETTERS
     //Obtengo el carrito desde el localStorage
     function obtenerCarrito() {
         const saved = localStorage.getItem('carrito')
-        //Si ell carrito se guardo en el localStorage se pondra en el array sino sera un array vacio
+        //Si el carrito se guardo en el localStorage se pondra en el array sino sera un array vacio
         arrayCarrito.value = saved ? JSON.parse(saved) : [];
     }
  
