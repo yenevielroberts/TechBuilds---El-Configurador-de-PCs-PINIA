@@ -5,39 +5,29 @@ export const userSessionStore = defineStore('userInfo', () => {
 
   //STATE
 
-  const userInfoSession = reactive({
-    "name": null,
-    "github": null
+  const userInfoSession = ref({
+    "name": localStorage.getItem("user") || "GuestBuilder",
+    "github": localStorage.getItem("userLink") || "https://github.com"
   })
-  //GETTERS
+ 
+ //ACTION
 
-  //Función para obtener los datos del localStorage
-  function getUserName() {
-    userInfoSession.name = localStorage.getItem("user") || null
-  }
+  function newUser(name = "GuestBuilder",link="https://github.com") {
 
-  //ACTION
-
-  function newUser(name = "GuestBuilder") {
-
-    const userObject = {
+    //Actualizo el objeto
+    userInfoSession.value = {
       "name": name,
-      "gitHub": "",
+      "github": link,
     }
 
     localStorage.setItem("user", name)
-    userInfoSession.value = userObject
+    localStorage.setItem("userLink", link)
   }
 
   function changeUserName(newName) {
-    userInfoSession.name = newName
+    userInfoSession.value.name = newName
     localStorage.setItem("user", newName)
   }
 
-  function checkOut() {
-    userInfoSession.name = "GuestBuilder"
-    localStorage.removeItem("usuario")
-    console.log("logout")
-  }
-  return { userInfoSession, getUserName, newUser, checkOut, changeUserName }
+  return { userInfoSession, newUser, changeUserName }
 })

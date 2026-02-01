@@ -1,29 +1,46 @@
 <script setup>
-
+import { ref } from 'vue';
 const props=defineProps({
     user: Object
 })
 
 
-const emit=defineEmits(["mostrarCarrito"])
-const mostrarCarrito=()=>{
-  
-    emit("mostrarCarrito", true)
+const emit=defineEmits(["mostrarCarrito","changeUSerName"])
+
+const carritoVisible=ref(false);
+
+const toggleCarrito=()=>{
+    carritoVisible.value = !carritoVisible.value;
+    emit("mostrarCarrito", carritoVisible.value)
+}
+
+function verGithub(){
+    console.log(props.user.github)
+    window.open(props.user.github,"_blank")
+}
+
+function changeUSerName(){
+
+    const cambiarNombre=confirm("¿Quieres cambiar el nombre de usuario?");
+    emit("changeUserName",cambiarNombre)
+
+    
 }
 </script>
 
 <template>
 
 <header>
-    <div id="header-content">
         <div>
-            <h1>TechBuilds</h1>
+            <h2>TechBuilds</h2>
         </div>
         <div id="div-user-info">
-            <p>{{user.name}}</p>
-            <button @click="mostrarCarrito">cart</button>
+            <button class="userName"@click="changeUSerName" id="AbrirModal">Hello, {{user.name}}</button>
+            <button @click="verGithub" class="enlaceGit">Github</button>
+            <button @click="toggleCarrito" class="btn-carrito">
+                {{ carritoVisible ? 'Close Cart' : 'Cart' }}
+            </button>
         </div>
-    </div>
 </header>
 </template>
 
@@ -31,26 +48,44 @@ const mostrarCarrito=()=>{
 
 header{
     width: 100%;
-    background-color: cadetblue;
-    height: auto;
-}
-#header-content{
-    padding: 10px;
+    background-color:#9a88e6;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    height: 100px;
+     align-items: center;
+     justify-content: space-between;
+    
 }
 
+h2{
+  margin-left:5px;
+ }
 #div-user-info{
-
+    margin: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
 
-#div-user-info > button{
-    margin-left: 20px;
-   
+.userName:hover{
+
+    color:white;
 }
+.btn-carrito,.enlaceGit, .userName{
+    border: none;
+    margin-left: 20px;
+    padding: 5px;
+    background-color:#9a88e6;
+    font-size: 13px;
+    font-weight: 550;
+    color:yellow
+}
+
+.enlaceGit:hover{
+    color: white;
+}
+.btn-carrito:hover{
+    color: white;
+}
+
 </style>

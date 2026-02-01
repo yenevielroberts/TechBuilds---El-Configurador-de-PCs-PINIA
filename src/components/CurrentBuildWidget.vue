@@ -6,33 +6,57 @@ import { buildStore } from '@/stores/BuildStore';
 let carrito=buildStore()
 carrito.obtenerCarrito()
 
+function checkOut(){
+
+  console.log(carrito.arrayCarrito)
+  if(carrito.arrayCarrito.length==0){
+
+    alert("No hay nada en el carrito")
+  }else{
+     carrito.checkOut()
+     alert("Checkout done with success")
+  }
+ 
+}
 
 </script>
 <template>
   <section id="section-carrito">
-    <h3>Carrito</h3>
-    <section id="carrito">
-        <BuildWidgetItem v-for="(product, name) in carrito.grouped"
-:key="name"
-:productCarrito="product[0]" 
-:cantidad="product.length"
-@delete-product="carrito.removeComponent"/>
-  <p><strong>Total: </strong>{{ carrito.totalPrice }}</p>
-    <button @click="carrito.checkOut">Checkout</button>
-    </section>
+    <h2>Your PC</h2>
+    <div id="carrito">
+        <BuildWidgetItem v-for="(product, name) in carrito.groupedByname"
+        :key="name"
+        :productCarrito="product[0]" 
+        :cantidad="product.length"
+        @delete-product="carrito.removeComponent"/>
+          
+    </div>
+    <p class="total"><strong>Total: </strong>${{ carrito.totalPrice }}</p>
+    <button @click="checkOut" class="checkout-btn">Checkout</button>
   </section>
 
  
 </template>
 <style scoped>
 
-.card{
+#section-carrito{
+  max-width: 600px;
+  width: 100%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
-  width: 200px;
-  margin: 10px;
-  border: black solid 1px;
-  padding: 5px;
+  padding: 20px;
+  
+
+}
+.total{
+  font-size: 20px;
+}
+
+#carrito{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 

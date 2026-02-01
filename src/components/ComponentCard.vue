@@ -19,18 +19,7 @@ const addToCart=()=>{
      <p><strong>{{ product.name }}</strong></p> 
      <p>{{ product.type }}</p>
      <p>${{ product.price }}</p>
-     <button @click="addToCart">Añadir al carrito</button>
+     <button @click="addToCart" class="añadir-btn">Add component</button>
   </div>
  
 </template>
-<style scoped>
-
-.card{
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  margin: 10px;
-  border: black solid 1px;
-  padding: 5px;
-}
-</style>
