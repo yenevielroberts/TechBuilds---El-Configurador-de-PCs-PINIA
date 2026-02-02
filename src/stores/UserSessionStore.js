@@ -29,5 +29,10 @@ export const userSessionStore = defineStore('userInfo', () => {
     localStorage.setItem("user", newName)
   }
 
-  return { userInfoSession, newUser, changeUserName }
+  function changeGitLink(newLink) {
+    userInfoSession.value.github = newLink
+    localStorage.setItem("userLink", newLink)
+  }
+
+  return { userInfoSession, newUser, changeUserName, changeGitLink}
 })

@@ -1,6 +1,16 @@
 [
-  { "name": "Intel Core i9", "type": "CPU", "price": 500, "image": "cpu-i9.jpg" },
+  { "name": "Intel Core i9", "type": "CPU", "price": 500, "image": "http://googleusercontent.com/image_collection/image_retrieval/8516507344039112583_0"},
   { "name": "AMD Ryzen 7", "type": "CPU", "price": 350, "image": "ryzen-7.jpg" },
   { "name": "NVIDIA RTX 4080", "type": "GPU", "price": 1200, "image": "rtx4080.jpg" },
-  { "name": "Corsair 32GB RGB", "type": "RAM", "price": 150, "image": "ram-rgb.jpg" }
+  { "name": "Corsair 32GB RGB", "type": "RAM", "price": 150, "image": "ram-rgb.jpg" },
+  { "name": "Samsung 990 Pro 1TB", "type": "SSD", "price": 110, "image": "ssd-990pro.jpg" },
+  { "name": "ASUS ROG Strix Z790", "type": "Motherboard", "price": 450, "image": "mobo-z790.jpg" },
+  { "name": "EVGA 850W Gold", "type": "PSU", "price": 130, "image": "psu-850.jpg" },
+  { "name": "NZXT H7 Flow", "type": "Case", "price": 140, "image": "case-h7.jpg" },
+  { "name": "Noctua NH-D15", "type": "Cooler", "price": 100, "image": "cooler-nhd15.jpg" },
+  { "name": "Logitech G Pro X", "type": "Mouse", "price": 120, "image": "mouse-gpro.jpg" },
+  { "name": "G.Skill Trident Z5 32GB DDR5", "type": "RAM", "price": 180, "image": "ram-ddr5-gskill.jpg" },
+  { "name": "Kingston FURY Beast 16GB", "type": "RAM", "price": 60, "image": "ram-kingston.jpg" },
+  { "name": "AMD Ryzen 9 7950X", "type": "CPU", "price": 550, "image": "ryzen-9.jpg" },
+  { "name": "Intel Core i5-13600K", "type": "CPU", "price": 320, "image": "cpu-i5.jpg" }
 ]

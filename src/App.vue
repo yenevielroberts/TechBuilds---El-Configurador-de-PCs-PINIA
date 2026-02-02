@@ -37,19 +37,32 @@ function cambiarNombre(param){
 
   if(param){
     const newName=prompt("Introduce tu nombre");
-    const cambirEnlace=confirm("Quieres cambiar el enlace de github también?")
 
-    if(cambirEnlace){
-        const githubLink=prompt("Introduce tu link de github")
-
-        user.newUser(newName,githubLink)
-    }else{
+  // Valido que no sea null (si cancela) y que tenga contenido
+    if(newName.length>0){
       user.changeUserName(newName)
     }
-  
+
+    // Llamamos a la segunda función SIEMPRE después de intentar cambiar el nombre
+    cambiarLink()
+    
+    
   }
 
 }
+
+function cambiarLink(){
+
+   const cambirEnlace=confirm("Quieres cambiar el enlace de github?")
+
+      if(cambirEnlace){
+          const githubLink=prompt("Introduce tu link de github")
+
+          if (githubLink && githubLink.length>0){ user.changeGitLink(githubLink) }
+      }
+
+}
+
 
 </script>
 
