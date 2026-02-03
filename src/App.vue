@@ -42,12 +42,10 @@ function cambiarNombre(param){
     if(newName.length>0){
       user.changeUserName(newName)
     }
-
-    // Llamamos a la segunda función SIEMPRE después de intentar cambiar el nombre
-    cambiarLink()
-    
     
   }
+   // Llamamos a la segunda función SIEMPRE después de intentar cambiar el nombre
+    cambiarLink()
 
 }
 

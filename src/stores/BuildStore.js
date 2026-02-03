@@ -18,8 +18,8 @@ export const buildStore = defineStore('buildStore', () => {
  
     const totalPrice=computed(()=> arrayCarrito.value.reduce((acumulador, elemento)=>acumulador+elemento.price,0))
    
-    const groupedByname=computed(()=>{
-        const grouped=groupBy(arrayCarrito.value, (product)=>product.name)
+    const groupedByType=computed(()=>{
+        const grouped=groupBy(arrayCarrito.value, (product)=>product.type)
         const sorted=Object.keys(grouped).sort()
         let inOrder={}
         sorted.forEach((key)=>(inOrder[key]=grouped[key]))
@@ -62,5 +62,5 @@ export const buildStore = defineStore('buildStore', () => {
 
 
 
-    return { arrayCarrito,groupedByname, totalPrice, addComponent, obtenerCarrito,checkOut, removeComponent }
+    return { arrayCarrito,groupedByType, totalPrice, addComponent, obtenerCarrito,checkOut, removeComponent }
 })

@@ -24,7 +24,7 @@ function checkOut(){
   <section id="section-carrito">
     <h2>Your PC</h2>
     <div id="carrito">
-        <BuildWidgetItem v-for="(product, name) in carrito.groupedByname"
+        <BuildWidgetItem v-for="(product, name) in carrito.groupedByType"
         :key="name"
         :productCarrito="product[0]" 
         :cantidad="product.length"
